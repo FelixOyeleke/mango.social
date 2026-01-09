@@ -35,7 +35,7 @@ export default function AdminWaitlist() {
 
   // Fetch waitlist stats
   const { data: statsData } = useQuery('waitlist-stats', async () => {
-    const response = await axios.get('/api/waitlist/stats');
+    const response = await axios.get('/api/waitlist/admin/stats');
     return response.data.data as WaitlistStats;
   });
 

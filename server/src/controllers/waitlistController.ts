@@ -77,11 +77,28 @@ export const getWaitlistEntries = async (req: AuthRequest, res: Response, next: 
   }
 };
 
+// Get public waitlist count
+export const getPublicWaitlistCount = async (req: AuthRequest, res: Response, next: NextFunction) => {
+  try {
+    const stats = await query(`
+      SELECT COUNT(*) as total
+      FROM waitlist
+    `);
+
+    res.json({
+      success: true,
+      data: { total: stats.rows[0].total }
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
 // Get waitlist stats (admin only)
 export const getWaitlistStats = async (req: AuthRequest, res: Response, next: NextFunction) => {
   try {
     const stats = await query(`
-      SELECT 
+      SELECT
         COUNT(*) as total,
         COUNT(*) FILTER (WHERE status = 'pending') as pending,
         COUNT(*) FILTER (WHERE status = 'approved') as approved,

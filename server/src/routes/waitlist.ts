@@ -7,12 +7,13 @@ import {
   joinWaitlist,
   getWaitlistEntries,
   getWaitlistStats,
+  getPublicWaitlistCount,
   updateWaitlistEntry
 } from '../controllers/waitlistController.js';
 
 const router = express.Router();
 
-// Public route - Join waitlist
+// Public routes
 router.post(
   '/',
   [
@@ -26,6 +27,9 @@ router.post(
   joinWaitlist
 );
 
+// Public stats endpoint (only returns total count)
+router.get('/stats', getPublicWaitlistCount);
+
 // Admin routes - require authentication and admin role
 router.get(
   '/',
@@ -35,7 +39,7 @@ router.get(
 );
 
 router.get(
-  '/stats',
+  '/admin/stats',
   authenticate,
   authorize('admin'),
   getWaitlistStats

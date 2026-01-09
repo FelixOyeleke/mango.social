@@ -1,6 +1,6 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { CheckCircle, Sparkles, Users, Globe, Briefcase, Heart } from 'lucide-react';
+import { CheckCircle, Users, Globe, Briefcase, Heart } from 'lucide-react';
 import axios from 'axios';
 
 export default function Waitlist() {
@@ -14,6 +14,21 @@ export default function Waitlist() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [error, setError] = useState('');
+  const [totalCount, setTotalCount] = useState<number>(0);
+
+  // Fetch waitlist count on mount
+  useEffect(() => {
+    const fetchCount = async () => {
+      try {
+        const response = await axios.get('/api/waitlist/stats');
+        setTotalCount(parseInt(response.data.data.total) || 0);
+      } catch (err) {
+        // Silently fail - count is optional
+        setTotalCount(0);
+      }
+    };
+    fetchCount();
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -66,12 +81,9 @@ export default function Waitlist() {
       <div className="max-w-6xl mx-auto px-4 py-12">
         {/* Header */}
         <div className="text-center mb-12">
-          <div className="flex items-center justify-center gap-2 mb-4">
-            <Sparkles className="w-8 h-8 text-yellow-300" />
-            <h1 className="text-4xl md:text-5xl font-bold text-white">
-              Join the Waitlist
-            </h1>
-          </div>
+          <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
+            Join the Waitlist
+          </h1>
           <p className="text-xl text-primary-100 max-w-2xl mx-auto">
             Be among the first to experience Mango Social - where immigrant voices connect, share, and thrive together.
           </p>
@@ -122,11 +134,13 @@ export default function Waitlist() {
               </div>
             </div>
 
-            <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 text-white">
-              <p className="text-sm text-primary-100">
-                <strong className="text-white">Join {Math.floor(Math.random() * 500) + 1000}+</strong> people already on the waitlist
-              </p>
-            </div>
+            {totalCount > 0 && (
+              <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 text-white">
+                <p className="text-sm text-primary-100">
+                  <strong className="text-white">Join {totalCount}+</strong> {totalCount === 1 ? 'person' : 'people'} already on the waitlist
+                </p>
+              </div>
+            )}
           </div>
 
           {/* Right: Form */}
