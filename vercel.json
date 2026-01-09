@@ -1,6 +1,11 @@
 {
   "version": 2,
+  "name": "mango-social",
   "builds": [
+    {
+      "src": "api/index.ts",
+      "use": "@vercel/node"
+    },
     {
       "src": "client/package.json",
       "use": "@vercel/static-build",
@@ -10,6 +15,10 @@
     }
   ],
   "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "/api/index.ts"
+    },
     {
       "src": "/assets/(.*)",
       "headers": {
@@ -45,8 +54,11 @@
       ]
     }
   ],
-  "buildCommand": "cd client && npm install && npm run build",
+  "env": {
+    "NODE_ENV": "production"
+  },
+  "buildCommand": "npm run build",
   "outputDirectory": "client/dist",
-  "installCommand": "cd client && npm install"
+  "installCommand": "npm run install:all"
 }
 
