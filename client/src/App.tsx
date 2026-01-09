@@ -25,12 +25,14 @@ import HashtagPage from './pages/HashtagPage';
 import Search from './pages/Search';
 import Trending from './pages/Trending';
 import AppStore from './pages/AppStore';
+import Waitlist from './pages/Waitlist';
 import NotFound from './pages/NotFound';
 import ProtectedRoute from './components/ProtectedRoute';
 import AdminLayout from './components/AdminLayout';
 import AdminDashboard from './pages/admin/Dashboard';
 import AdminUsers from './pages/admin/Users';
 import AdminActivity from './pages/admin/Activity';
+import AdminWaitlist from './pages/admin/Waitlist';
 
 function App() {
   const { checkAuth, isAuthenticated } = useAuthStore();
@@ -66,6 +68,7 @@ function App() {
         <Route path="login" element={<Login />} />
         <Route path="register" element={<Register />} />
         <Route path="resources" element={<Resources />} />
+        <Route path="waitlist" element={<Waitlist />} />
 
         {/* Protected Routes */}
         <Route element={<ProtectedRoute />}>
@@ -86,6 +89,7 @@ function App() {
         <Route index element={<AdminDashboard />} />
         <Route path="users" element={<AdminUsers />} />
         <Route path="activity" element={<AdminActivity />} />
+        <Route path="waitlist" element={<AdminWaitlist />} />
       </Route>
     </Routes>
   );

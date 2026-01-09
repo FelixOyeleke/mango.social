@@ -1,5 +1,5 @@
 import { Link, Outlet, useLocation, Navigate } from 'react-router-dom';
-import { LayoutDashboard, Users, Activity, FileText, ArrowLeft } from 'lucide-react';
+import { LayoutDashboard, Users, Activity, FileText, ArrowLeft, ListChecks } from 'lucide-react';
 import { useAuthStore } from '../store/authStore';
 
 export default function AdminLayout() {
@@ -15,6 +15,7 @@ export default function AdminLayout() {
     { path: '/admin', icon: LayoutDashboard, label: 'Dashboard', exact: true },
     { path: '/admin/users', icon: Users, label: 'Users' },
     { path: '/admin/activity', icon: Activity, label: 'Activity' },
+    { path: '/admin/waitlist', icon: ListChecks, label: 'Waitlist' },
     { path: '/admin/stories', icon: FileText, label: 'Stories' },
   ];
 

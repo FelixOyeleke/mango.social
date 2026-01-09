@@ -23,6 +23,7 @@ import notificationRoutes from './routes/notifications.js';
 import hashtagRoutes from './routes/hashtags.js';
 import pollRoutes from './routes/polls.js';
 import appRoutes from './routes/apps.js';
+import waitlistRoutes from './routes/waitlist.js';
 import { errorHandler } from './middleware/errorHandler.js';
 import { pool } from './db/connection.js';
 
@@ -76,6 +77,7 @@ app.use('/api/notifications', notificationRoutes);
 app.use('/api/hashtags', hashtagRoutes);
 app.use('/api/polls', pollRoutes);
 app.use('/api/apps', appRoutes);
+app.use('/api/waitlist', waitlistRoutes);
 
 // Error handling
 app.use(errorHandler);
