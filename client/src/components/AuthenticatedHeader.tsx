@@ -52,6 +52,13 @@ export default function AuthenticatedHeader() {
           <nav className="hidden md:flex items-center gap-1 absolute left-1/2 -translate-x-1/2">
             {/* Core Navigation - Always visible */}
             <Link
+              to="/waitlist"
+              className="flex items-center gap-2 px-4 py-2 text-gray-300 hover:bg-gray-800 rounded-lg transition-colors"
+            >
+              <span className="text-sm font-medium">Waitlist</span>
+            </Link>
+
+            <Link
               to="/forum"
               className="flex items-center gap-2 px-4 py-2 text-gray-300 hover:bg-gray-800 rounded-lg transition-colors"
             >
@@ -146,6 +153,10 @@ export default function AuthenticatedHeader() {
           <div className="md:hidden py-4 border-t border-gray-800">
             <nav className="flex flex-col gap-3">
               {/* Core Navigation - Always visible */}
+              <Link to="/waitlist" className="flex items-center gap-3 text-sm font-medium text-gray-300 py-2" onClick={() => setMobileMenuOpen(false)}>
+                Waitlist
+              </Link>
+
               <Link to="/forum" className="flex items-center gap-3 text-sm font-medium text-gray-300 py-2" onClick={() => setMobileMenuOpen(false)}>
                 Feed
               </Link>
