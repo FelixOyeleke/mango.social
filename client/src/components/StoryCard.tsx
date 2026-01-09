@@ -1,5 +1,5 @@
-import { Link, useNavigate } from 'react-router-dom';
-import { Heart, MessageSquare, Bookmark, Share2, MoreHorizontal, Repeat2, Quote, Trash2, Edit, Flag, Link as LinkIcon, Eye, EyeOff, MapPin } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { Heart, MessageSquare, Bookmark, Share2, MoreHorizontal, Repeat2, Quote, Trash2, Flag, Link as LinkIcon, MapPin } from 'lucide-react';
 import { useState, useRef, useEffect } from 'react';
 import { useAuthStore } from '../store/authStore';
 import axios from 'axios';
@@ -50,7 +50,6 @@ interface StoryCardProps {
 
 export default function StoryCard({ story }: StoryCardProps) {
   const { isAuthenticated, user } = useAuthStore();
-  const navigate = useNavigate();
   const [isLiked, setIsLiked] = useState(story.is_liked_by_user || false);
   const [isBookmarked, setIsBookmarked] = useState(story.is_bookmarked_by_user || false);
   const [isReposted, setIsReposted] = useState(story.is_reposted_by_user || false);
@@ -83,19 +82,6 @@ export default function StoryCard({ story }: StoryCardProps) {
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, [showRepostMenu, showOptionsMenu]);
-
-  const categoryColors: Record<string, { bg: string; text: string }> = {
-    Culture: { bg: 'bg-primary-600/10', text: 'text-primary-600' },
-    Business: { bg: 'bg-primary-600/10', text: 'text-primary-600' },
-    Education: { bg: 'bg-primary-600/10', text: 'text-primary-600' },
-    Healthcare: { bg: 'bg-primary-600/10', text: 'text-primary-600' },
-    Technology: { bg: 'bg-primary-600/10', text: 'text-primary-600' },
-    Family: { bg: 'bg-primary-600/10', text: 'text-primary-600' },
-    Career: { bg: 'bg-primary-600/10', text: 'text-primary-600' },
-    default: { bg: 'bg-gray-800', text: 'text-gray-400' },
-  };
-
-  const categoryStyle = categoryColors[story.category] || categoryColors.default;
 
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);

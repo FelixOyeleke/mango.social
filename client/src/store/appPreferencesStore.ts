@@ -38,7 +38,7 @@ export const useAppPreferencesStore = create<AppPreferencesState>((set, get) => 
       const response = await axios.get('/api/apps/preferences');
       const apps = response.data.data;
 
-      const enabledApps = new Set(
+      const enabledApps = new Set<string>(
         apps.filter((app: App) => app.is_enabled).map((app: App) => app.id)
       );
 
@@ -110,7 +110,7 @@ export const useAppPreferencesStore = create<AppPreferencesState>((set, get) => 
     try {
       const response = await axios.put('/api/apps/preferences', { preferences });
       const apps = response.data.data;
-      const enabledApps = new Set(
+      const enabledApps = new Set<string>(
         apps.filter((app: App) => app.is_enabled).map((app: App) => app.id)
       );
       set({ apps, enabledApps });

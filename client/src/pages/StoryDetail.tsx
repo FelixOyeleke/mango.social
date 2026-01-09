@@ -29,7 +29,6 @@ export default function StoryDetail() {
   const [wordCount, setWordCount] = useState(0);
   const [replyParentId, setReplyParentId] = useState<string | null>(null);
   const [replyText, setReplyText] = useState('');
-  const [replyingToName, setReplyingToName] = useState('');
   const queryClient = useQueryClient();
 
   const MAX_WORDS = 300;
@@ -91,15 +90,13 @@ export default function StoryDetail() {
     }
   };
 
-  const handleReply = (commentId: string, userName: string) => {
+  const handleReply = (commentId: string) => {
     setReplyParentId(commentId);
-    setReplyingToName(userName);
     setReplyText('');
   };
 
   const handleCancelReply = () => {
     setReplyParentId(null);
-    setReplyingToName('');
     setReplyText('');
   };
 

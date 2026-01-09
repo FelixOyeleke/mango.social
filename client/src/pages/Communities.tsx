@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import { Users, Plus, Search, Lock, Globe, X, MessageSquare } from 'lucide-react';
+import { Users, Plus, Search, Lock, Globe, X } from 'lucide-react';
 import { useAuthStore } from '../store/authStore';
 
 interface Community {

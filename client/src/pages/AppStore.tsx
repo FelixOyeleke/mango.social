@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useAppPreferencesStore, App } from '../store/appPreferencesStore';
+import { useAppPreferencesStore } from '../store/appPreferencesStore';
 import {
   Heart, Briefcase, BookOpen, ShoppingBag, Loader2, AlertCircle, X
 } from 'lucide-react';

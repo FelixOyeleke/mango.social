@@ -1,5 +1,4 @@
-import { CheckCircle, XCircle, Shield, Ban, Clock, Mail, Edit, Trash2 } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { CheckCircle, XCircle, Ban, Clock, Mail, Trash2 } from 'lucide-react';
 
 interface User {
   id: string;

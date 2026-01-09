@@ -1,5 +1,5 @@
 import { Link, useNavigate } from 'react-router-dom';
-import { ArrowRight, Users, Globe, MessageSquare } from 'lucide-react';
+import { ArrowRight, Users, Globe } from 'lucide-react';
 import { useAuthStore } from '../store/authStore';
 import { useEffect } from 'react';
 
