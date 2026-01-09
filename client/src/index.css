@@ -1,0 +1,14 @@
+/* Main CSS entry point - Modularized for better organization */
+
+/* All @import statements must come first */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+@import './styles/base.css';
+@import './styles/components.css';
+@import './styles/utilities.css';
+@import './styles/scrollbar.css';
+
+/* Tailwind directives */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+

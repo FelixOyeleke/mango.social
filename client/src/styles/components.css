@@ -1,0 +1,39 @@
+/* Component styles - Reusable UI components */
+
+@layer components {
+  /* Buttons */
+  .btn-primary {
+    @apply px-4 py-2 bg-primary-600 text-white rounded-lg font-semibold hover:bg-primary-700 transition-all shadow-sm hover:shadow-md;
+    font-size: 13px; /* Smaller button text */
+  }
+
+  .btn-secondary {
+    @apply px-4 py-2 bg-gray-800 text-gray-200 border border-gray-700 rounded-lg font-semibold hover:bg-gray-700 transition-all;
+    font-size: 13px; /* Smaller button text */
+  }
+
+  /* Form inputs */
+  .input-field {
+    @apply w-full px-3 py-2 border border-gray-700 bg-gray-900 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all;
+    font-size: 14px; /* Smaller input text */
+  }
+
+  /* Cards */
+  .card {
+    @apply bg-gray-900 rounded-xl border border-gray-800 p-4 transition-all hover:border-gray-700;
+  }
+
+  /* Widgets */
+  .widget {
+    @apply bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-800 overflow-hidden;
+  }
+
+  .widget-header {
+    @apply px-4 py-3.5 border-b border-gray-200 dark:border-gray-700;
+  }
+
+  .widget-body {
+    @apply p-4;
+  }
+}
+

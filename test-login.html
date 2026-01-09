@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Login - Immigrant Voices</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        button {
+            background: #3b82f6;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px 5px;
+        }
+        button:hover {
+            background: #2563eb;
+        }
+        .danger {
+            background: #ef4444;
+        }
+        .danger:hover {
+            background: #dc2626;
+        }
+        .success {
+            background: #10b981;
+        }
+        .success:hover {
+            background: #059669;
+        }
+        #output {
+            margin-top: 20px;
+            padding: 15px;
+            background: #f9fafb;
+            border-radius: 6px;
+            border: 1px solid #e5e7eb;
+            white-space: pre-wrap;
+            font-family: monospace;
+            font-size: 14px;
+        }
+        .status {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 6px;
+        }
+        .status.success {
+            background: #d1fae5;
+            color: #065f46;
+        }
+        .status.error {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+        .status.info {
+            background: #dbeafe;
+            color: #1e40af;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔧 Test Login & Debug</h1>
+        
+        <div class="status info">
+            <strong>Test Credentials:</strong><br>
+            Email: test@test.com<br>
+            Password: password123
+        </div>
+
+        <h3>Quick Actions:</h3>
+        
+        <button onclick="clearStorage()">🗑️ Clear Storage</button>
+        <button onclick="testBackend()">🔍 Test Backend</button>
+        <button onclick="testLogin()">🔑 Test Login</button>
+        <button class="success" onclick="openApp()">🚀 Open App</button>
+        
+        <div id="output"></div>
+    </div>
+
+    <script>
+        const output = document.getElementById('output');
+
+        function log(message, type = 'info') {
+            const timestamp = new Date().toLocaleTimeString();
+            output.innerHTML += `[${timestamp}] ${message}\n`;
+            output.scrollTop = output.scrollHeight;
+        }
+
+        function clearStorage() {
+            localStorage.clear();
+            sessionStorage.clear();
+            log('✅ Cleared localStorage and sessionStorage', 'success');
+            alert('Storage cleared! You can now try logging in again.');
+        }
+
+        async function testBackend() {
+            log('Testing backend connection...', 'info');
+            try {
+                const response = await fetch('http://localhost:5000/api/health');
+                if (response.ok) {
+                    const data = await response.json();
+                    log('✅ Backend is running: ' + JSON.stringify(data), 'success');
+                } else {
+                    log('❌ Backend returned error: ' + response.status, 'error');
+                }
+            } catch (error) {
+                log('❌ Cannot connect to backend. Is it running?', 'error');
+                log('Error: ' + error.message, 'error');
+            }
+        }
+
+        async function testLogin() {
+            log('Testing login...', 'info');
+            try {
+                const response = await fetch('http://localhost:5000/api/auth/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        email: 'test@test.com',
+                        password: 'password123'
+                    })
+                });
+
+                const data = await response.json();
+                
+                if (response.ok) {
+                    log('✅ Login successful!', 'success');
+                    log('User: ' + JSON.stringify(data.data.user, null, 2), 'success');
+                    log('Token: ' + data.data.token.substring(0, 50) + '...', 'success');
+                    
+                    // Save token
+                    localStorage.setItem('token', data.data.token);
+                    localStorage.setItem('user', JSON.stringify(data.data.user));
+                    
+                    alert('Login successful! Token saved. You can now open the app.');
+                } else {
+                    log('❌ Login failed: ' + response.status, 'error');
+                    log('Error: ' + JSON.stringify(data, null, 2), 'error');
+                }
+            } catch (error) {
+                log('❌ Login request failed', 'error');
+                log('Error: ' + error.message, 'error');
+            }
+        }
+
+        function openApp() {
+            window.open('http://localhost:5173', '_blank');
+        }
+
+        // Auto-test on load
+        window.onload = () => {
+            log('🚀 Test page loaded', 'info');
+            log('Click buttons above to test different features', 'info');
+            testBackend();
+        };
+    </script>
+</body>
+</html>
+

@@ -1,0 +1,45 @@
+services:
+  # PostgreSQL Database
+  - type: pserv
+    name: immigrant-voices-db
+    env: docker
+    plan: free
+    region: oregon
+    databases:
+      - name: immigrant_voices
+        databaseName: immigrant_voices
+        user: immigrant_voices_user
+
+  # Backend API
+  - type: web
+    name: immigrant-voices-api
+    env: node
+    region: oregon
+    plan: free
+    buildCommand: cd server && npm install && npm run build
+    startCommand: cd server && npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      - key: DATABASE_URL
+        fromDatabase:
+          name: immigrant-voices-db
+          property: connectionString
+      - key: JWT_SECRET
+        generateValue: true
+      - key: JWT_EXPIRES_IN
+        value: 7d
+      - key: JWT_REFRESH_SECRET
+        generateValue: true
+      - key: JWT_REFRESH_EXPIRES_IN
+        value: 30d
+      - key: CLIENT_URL
+        sync: false
+      - key: RATE_LIMIT_WINDOW_MS
+        value: 900000
+      - key: RATE_LIMIT_MAX_REQUESTS
+        value: 100
+    healthCheckPath: /health
+
