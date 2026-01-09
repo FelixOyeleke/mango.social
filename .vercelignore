@@ -1,3 +1,6 @@
+# Server directory - backend is deployed on Render
+server/
+
 # Dependencies
 node_modules
 npm-debug.log
