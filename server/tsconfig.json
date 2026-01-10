@@ -25,7 +25,8 @@
     "strictBindCallApply": false,
     "strictPropertyInitialization": false,
     "allowUnreachableCode": true,
-    "allowUnusedLabels": true
+    "allowUnusedLabels": true,
+    "noEmitOnError": false
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules", "dist"]
