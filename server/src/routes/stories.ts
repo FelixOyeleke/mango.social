@@ -1,4 +1,4 @@
-import express from 'express';
+import express, { Response, NextFunction } from 'express';
 import multer from 'multer';
 import { body, query as queryValidator, validationResult } from 'express-validator';
 import { query } from '../db/connection.js';
@@ -27,7 +27,7 @@ const upload = multer({
 });
 
 // Get all stories (public)
-router.get('/', async (req: AuthRequest, res, next) => {
+router.get('/', async (req: AuthRequest, res: Response, next: NextFunction) => {
   try {
     const page = parseInt(req.query.page as string) || 1;
     const limit = parseInt(req.query.limit as string) || 10;
