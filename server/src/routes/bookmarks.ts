@@ -1,11 +1,11 @@
-import express from 'express';
+import express, { Request } from 'express';
 import { query } from '../db/connection.js';
-import { authenticate, AuthRequest } from '../middleware/auth.js';
+import { authenticate } from '../middleware/auth.js';
 
 const router = express.Router();
 
 // Get user bookmarks
-router.get('/', authenticate, async (req: AuthRequest, res, next) => {
+router.get('/', authenticate, async (req: Request, res, next) => {
   try {
     const result = await query(
       `SELECT s.*, u.full_name as author_name, b.created_at as bookmarked_at
@@ -24,7 +24,7 @@ router.get('/', authenticate, async (req: AuthRequest, res, next) => {
 });
 
 // Add bookmark
-router.post('/', authenticate, async (req: AuthRequest, res, next) => {
+router.post('/', authenticate, async (req: Request, res, next) => {
   try {
     const { story_id } = req.body;
     await query(
@@ -39,7 +39,7 @@ router.post('/', authenticate, async (req: AuthRequest, res, next) => {
 });
 
 // Remove bookmark
-router.delete('/:storyId', authenticate, async (req: AuthRequest, res, next) => {
+router.delete('/:storyId', authenticate, async (req: Request, res, next) => {
   try {
     const { storyId } = req.params;
     await query('DELETE FROM bookmarks WHERE user_id = $1 AND story_id = $2', [req.user!.id, storyId]);

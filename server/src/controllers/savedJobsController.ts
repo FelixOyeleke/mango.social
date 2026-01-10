@@ -1,10 +1,9 @@
-import { Response } from 'express';
+import { Request, Response } from 'express';
 import { query } from '../db/connection.js';
-import { AuthRequest } from '../middleware/auth.js';
 import { createError } from '../middleware/errorHandler.js';
 
 // Get user's saved jobs
-export const getSavedJobs = async (req: AuthRequest, res: Response) => {
+export const getSavedJobs = async (req: Request, res: Response) => {
   try {
     const result = await query(`
       SELECT 
@@ -29,7 +28,7 @@ export const getSavedJobs = async (req: AuthRequest, res: Response) => {
 };
 
 // Save a job
-export const saveJob = async (req: AuthRequest, res: Response) => {
+export const saveJob = async (req: Request, res: Response) => {
   try {
     const { job_id } = req.body;
 
@@ -64,7 +63,7 @@ export const saveJob = async (req: AuthRequest, res: Response) => {
 };
 
 // Unsave a job
-export const unsaveJob = async (req: AuthRequest, res: Response) => {
+export const unsaveJob = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
 
@@ -89,7 +88,7 @@ export const unsaveJob = async (req: AuthRequest, res: Response) => {
 };
 
 // Check if job is saved
-export const checkJobSaved = async (req: AuthRequest, res: Response) => {
+export const checkJobSaved = async (req: Request, res: Response) => {
   try {
     const { job_id } = req.params;
 

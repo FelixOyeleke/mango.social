@@ -1,5 +1,4 @@
-import { Response } from 'express';
-import { AuthRequest } from '../middleware/auth.js';
+import { Request, Response } from 'express';
 import { query } from '../db/connection.js';
 import { createError } from '../middleware/errorHandler.js';
 
@@ -37,7 +36,7 @@ export const createPoll = async (
 };
 
 // Get poll by story ID
-export const getPollByStoryId = async (req: AuthRequest, res: Response) => {
+export const getPollByStoryId = async (req: Request, res: Response) => {
   try {
     const { storyId } = req.params;
     const userId = req.user?.id;
@@ -106,7 +105,7 @@ export const getPollByStoryId = async (req: AuthRequest, res: Response) => {
 };
 
 // Vote on a poll
-export const votePoll = async (req: AuthRequest, res: Response) => {
+export const votePoll = async (req: Request, res: Response) => {
   try {
     const { poll_option_id } = req.body;
     const userId = req.user!.id;

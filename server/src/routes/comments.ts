@@ -1,7 +1,7 @@
-import express from 'express';
+import express, { Request } from 'express';
 import { body, validationResult } from 'express-validator';
 import { query } from '../db/connection.js';
-import { authenticate, AuthRequest } from '../middleware/auth.js';
+import { authenticate } from '../middleware/auth.js';
 import { createCommentNotification } from '../controllers/notificationsController.js';
 
 const router = express.Router();
@@ -68,7 +68,7 @@ router.post(
   '/',
   authenticate,
   [body('story_id').isUUID(), body('content').trim().notEmpty()],
-  async (req: AuthRequest, res: any, next: any) => {
+  async (req: Request, res: any, next: any) => {
     try {
       const errors = validationResult(req);
       if (!errors.isEmpty()) {

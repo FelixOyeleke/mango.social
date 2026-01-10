@@ -7,6 +7,16 @@ import { createError } from '../middleware/errorHandler.js';
 
 const router = express.Router();
 
+const jwtExpiresIn = (process.env.JWT_EXPIRES_IN || '7d') as jwt.SignOptions['expiresIn'];
+
+function getJwtSecret() {
+  const secret = process.env.JWT_SECRET;
+  if (!secret) {
+    throw createError('JWT secret is not configured', 500);
+  }
+  return secret;
+}
+
 // Register
 router.post(
   '/register',
@@ -84,8 +94,8 @@ router.post(
       // Generate token
       const token = jwt.sign(
         { id: user.id, email: user.email, role: 'user' },
-        process.env.JWT_SECRET!,
-        { expiresIn: process.env.JWT_EXPIRES_IN || '7d' }
+        getJwtSecret(),
+        { expiresIn: jwtExpiresIn }
       );
 
       res.status(201).json({
@@ -165,8 +175,8 @@ router.post(
       // Generate token
       const token = jwt.sign(
         { id: user.id, email: user.email, role: user.role },
-        process.env.JWT_SECRET!,
-        { expiresIn: process.env.JWT_EXPIRES_IN || '7d' }
+        getJwtSecret(),
+        { expiresIn: jwtExpiresIn }
       );
 
       console.log('Token generated successfully');
@@ -246,4 +256,3 @@ router.get('/me', async (req: Request, res: Response, next: NextFunction) => {
 });
 
 export default router;
-

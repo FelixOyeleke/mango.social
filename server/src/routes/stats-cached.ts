@@ -1,13 +1,13 @@
-import express from 'express';
+import express, { Request } from 'express';
 import { query } from '../db/connection.js';
 import { cache } from '../db/redis.js';
-import { authenticate, AuthRequest } from '../middleware/auth.js';
+import { authenticate } from '../middleware/auth.js';
 
 const router = express.Router();
 
 const optionalAuthenticate: express.RequestHandler = (req, res, next) => {
   if (req.headers.authorization) {
-    return authenticate(req as AuthRequest, res, next);
+    return authenticate(req, res, next);
   }
   return next();
 };
@@ -108,7 +108,7 @@ router.get('/trending', async (req, res, next) => {
 });
 
 // Get suggested users (with Redis caching)
-router.get('/suggested-users', optionalAuthenticate, async (req: AuthRequest, res, next) => {
+router.get('/suggested-users', optionalAuthenticate, async (req: Request, res, next) => {
   try {
     const limit = parseInt(req.query.limit as string) || 5;
     const currentUserId = req.user?.id || null;

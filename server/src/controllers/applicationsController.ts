@@ -1,10 +1,9 @@
-import { Response } from 'express';
+import { Request, Response } from 'express';
 import { query } from '../db/connection.js';
-import { AuthRequest } from '../middleware/auth.js';
 import { createError } from '../middleware/errorHandler.js';
 
 // Get user's applications
-export const getUserApplications = async (req: AuthRequest, res: Response) => {
+export const getUserApplications = async (req: Request, res: Response) => {
   try {
     const result = await query(`
       SELECT 
@@ -33,7 +32,7 @@ export const getUserApplications = async (req: AuthRequest, res: Response) => {
 };
 
 // Apply to a job
-export const applyToJob = async (req: AuthRequest, res: Response) => {
+export const applyToJob = async (req: Request, res: Response) => {
   try {
     const { job_id, cover_letter, resume_url } = req.body;
 
@@ -75,7 +74,7 @@ export const applyToJob = async (req: AuthRequest, res: Response) => {
 };
 
 // Get single application
-export const getApplication = async (req: AuthRequest, res: Response) => {
+export const getApplication = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
 
@@ -117,7 +116,7 @@ export const getApplication = async (req: AuthRequest, res: Response) => {
 };
 
 // Update application status (employer only)
-export const updateApplicationStatus = async (req: AuthRequest, res: Response) => {
+export const updateApplicationStatus = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
     const { status } = req.body;
@@ -154,7 +153,7 @@ export const updateApplicationStatus = async (req: AuthRequest, res: Response) =
 };
 
 // Withdraw application
-export const withdrawApplication = async (req: AuthRequest, res: Response) => {
+export const withdrawApplication = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
 

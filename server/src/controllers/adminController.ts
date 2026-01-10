@@ -1,11 +1,10 @@
-import { Response, NextFunction } from 'express';
-import { AuthRequest } from '../middleware/auth.js';
+import { Request, Response, NextFunction } from 'express';
 import { query } from '../db/connection.js';
 import { createError } from '../middleware/errorHandler.js';
 
 // Get dashboard statistics
 export const getDashboardStats = async (
-  req: AuthRequest,
+  req: Request,
   res: Response,
   next: NextFunction
 ) => {
@@ -125,7 +124,7 @@ export const getDashboardStats = async (
 
 // Get all users with pagination and filters
 export const getUsers = async (
-  req: AuthRequest,
+  req: Request,
   res: Response,
   next: NextFunction
 ) => {
@@ -247,7 +246,7 @@ export const getUsers = async (
 
 // Get single user details
 export const getUserDetails = async (
-  req: AuthRequest,
+  req: Request,
   res: Response,
   next: NextFunction
 ) => {
@@ -316,7 +315,7 @@ export const getUserDetails = async (
 
 // Update user (admin)
 export const updateUser = async (
-  req: AuthRequest,
+  req: Request,
   res: Response,
   next: NextFunction
 ) => {
@@ -350,7 +349,7 @@ export const updateUser = async (
 
 // Block/Unblock user (admin)
 export const blockUser = async (
-  req: AuthRequest,
+  req: Request,
   res: Response,
   next: NextFunction
 ) => {
@@ -402,7 +401,7 @@ export const blockUser = async (
 
 // Suspend user temporarily (admin)
 export const suspendUser = async (
-  req: AuthRequest,
+  req: Request,
   res: Response,
   next: NextFunction
 ) => {
@@ -444,7 +443,7 @@ export const suspendUser = async (
 
 // Send message to user (admin)
 export const sendMessageToUser = async (
-  req: AuthRequest,
+  req: Request,
   res: Response,
   next: NextFunction
 ) => {
@@ -524,7 +523,7 @@ export const sendMessageToUser = async (
 
 // Delete user (admin)
 export const deleteUser = async (
-  req: AuthRequest,
+  req: Request,
   res: Response,
   next: NextFunction
 ) => {
@@ -568,7 +567,7 @@ export const deleteUser = async (
 
 // Get all stories with filters
 export const getStories = async (
-  req: AuthRequest,
+  req: Request,
   res: Response,
   next: NextFunction
 ) => {
@@ -628,7 +627,7 @@ export const getStories = async (
 
 // Delete story (admin)
 export const deleteStory = async (
-  req: AuthRequest,
+  req: Request,
   res: Response,
   next: NextFunction
 ) => {
@@ -648,7 +647,7 @@ export const deleteStory = async (
 
 // Get recent activity
 export const getRecentActivity = async (
-  req: AuthRequest,
+  req: Request,
   res: Response,
   next: NextFunction
 ) => {

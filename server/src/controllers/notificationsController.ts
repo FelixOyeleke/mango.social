@@ -1,9 +1,8 @@
-import { Response } from 'express';
-import { AuthRequest } from '../middleware/auth.js';
+import { Request, Response } from 'express';
 import { query } from '../db/connection.js';
 
 // Get user's notifications
-export const getNotifications = async (req: AuthRequest, res: Response) => {
+export const getNotifications = async (req: Request, res: Response) => {
   try {
     const limit = parseInt(req.query.limit as string) || 20;
     const offset = parseInt(req.query.offset as string) || 0;
@@ -45,7 +44,7 @@ export const getNotifications = async (req: AuthRequest, res: Response) => {
 };
 
 // Get unread count
-export const getUnreadCount = async (req: AuthRequest, res: Response) => {
+export const getUnreadCount = async (req: Request, res: Response) => {
   try {
     const result = await query(
       'SELECT COUNT(*) as count FROM notifications WHERE user_id = $1 AND is_read = false',
@@ -62,7 +61,7 @@ export const getUnreadCount = async (req: AuthRequest, res: Response) => {
 };
 
 // Mark notification as read
-export const markAsRead = async (req: AuthRequest, res: Response) => {
+export const markAsRead = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
 
@@ -81,7 +80,7 @@ export const markAsRead = async (req: AuthRequest, res: Response) => {
 };
 
 // Mark all notifications as read
-export const markAllAsRead = async (req: AuthRequest, res: Response) => {
+export const markAllAsRead = async (req: Request, res: Response) => {
   try {
     await query(
       'UPDATE notifications SET is_read = true WHERE user_id = $1 AND is_read = false',
@@ -98,7 +97,7 @@ export const markAllAsRead = async (req: AuthRequest, res: Response) => {
 };
 
 // Delete notification
-export const deleteNotification = async (req: AuthRequest, res: Response) => {
+export const deleteNotification = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
 

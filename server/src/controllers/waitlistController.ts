@@ -1,9 +1,8 @@
-import { Response, NextFunction } from 'express';
+import { Request, Response, NextFunction } from 'express';
 import { query } from '../db/connection.js';
-import { AuthRequest } from '../middleware/auth.js';
 
 // Join waitlist (public endpoint)
-export const joinWaitlist = async (req: AuthRequest, res: Response, next: NextFunction) => {
+export const joinWaitlist = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const { email, full_name, reason, interest_area, referral_source } = req.body;
 
@@ -39,7 +38,7 @@ export const joinWaitlist = async (req: AuthRequest, res: Response, next: NextFu
 };
 
 // Get all waitlist entries (admin only)
-export const getWaitlistEntries = async (req: AuthRequest, res: Response, next: NextFunction) => {
+export const getWaitlistEntries = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const { status, limit = 100, offset = 0 } = req.query;
 
@@ -78,7 +77,7 @@ export const getWaitlistEntries = async (req: AuthRequest, res: Response, next: 
 };
 
 // Get public waitlist count
-export const getPublicWaitlistCount = async (req: AuthRequest, res: Response, next: NextFunction) => {
+export const getPublicWaitlistCount = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const stats = await query(`
       SELECT COUNT(*) as total
@@ -95,7 +94,7 @@ export const getPublicWaitlistCount = async (req: AuthRequest, res: Response, ne
 };
 
 // Get waitlist stats (admin only)
-export const getWaitlistStats = async (req: AuthRequest, res: Response, next: NextFunction) => {
+export const getWaitlistStats = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const stats = await query(`
       SELECT
@@ -119,7 +118,7 @@ export const getWaitlistStats = async (req: AuthRequest, res: Response, next: Ne
 };
 
 // Update waitlist entry status (admin only)
-export const updateWaitlistEntry = async (req: AuthRequest, res: Response, next: NextFunction) => {
+export const updateWaitlistEntry = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const { id } = req.params;
     const { status, notes } = req.body;

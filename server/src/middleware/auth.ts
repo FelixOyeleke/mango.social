@@ -2,6 +2,7 @@ import { Request, Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
 import { createError } from './errorHandler.js';
 
+// Keep AuthRequest for backward compatibility
 export interface AuthRequest extends Request {
   user?: {
     id: string;
@@ -11,7 +12,7 @@ export interface AuthRequest extends Request {
 }
 
 export const authenticate = async (
-  req: AuthRequest,
+  req: Request,
   res: Response,
   next: NextFunction
 ) => {
@@ -36,7 +37,7 @@ export const authenticate = async (
 };
 
 export const authorize = (...roles: string[]) => {
-  return (req: AuthRequest, res: Response, next: NextFunction) => {
+  return (req: Request, res: Response, next: NextFunction) => {
     if (!req.user) {
       return next(createError('Authentication required', 401));
     }
@@ -51,7 +52,7 @@ export const authorize = (...roles: string[]) => {
 
 // Optional authentication - doesn't fail if no token, but sets user if valid token exists
 export const optionalAuth = async (
-  req: AuthRequest,
+  req: Request,
   res: Response,
   next: NextFunction
 ) => {

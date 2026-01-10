@@ -6,6 +6,7 @@
     "moduleResolution": "node",
     "rootDir": "./src",
     "outDir": "./dist",
+    "types": ["node"],
     "strict": false,
     "noImplicitAny": false,
     "esModuleInterop": true,
@@ -28,7 +29,6 @@
     "allowUnusedLabels": true,
     "noEmitOnError": false
   },
-  "include": ["src/**/*"],
+  "include": ["src/**/*", "src/types/**/*.d.ts"],
   "exclude": ["node_modules", "dist"]
 }
-

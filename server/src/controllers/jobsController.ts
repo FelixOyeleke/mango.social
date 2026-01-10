@@ -1,10 +1,9 @@
-import { Response } from 'express';
+import { Request, Response } from 'express';
 import { query } from '../db/connection.js';
-import { AuthRequest } from '../middleware/auth.js';
 import { createError } from '../middleware/errorHandler.js';
 
 // Get all jobs with filters
-export const getJobs = async (req: AuthRequest, res: Response) => {
+export const getJobs = async (req: Request, res: Response) => {
   try {
     const {
       search,
@@ -138,7 +137,7 @@ export const getJobs = async (req: AuthRequest, res: Response) => {
 };
 
 // Get single job
-export const getJob = async (req: AuthRequest, res: Response) => {
+export const getJob = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
 
@@ -170,7 +169,7 @@ export const getJob = async (req: AuthRequest, res: Response) => {
 };
 
 // Create job (employer only)
-export const createJob = async (req: AuthRequest, res: Response) => {
+export const createJob = async (req: Request, res: Response) => {
   try {
     const {
       title,
@@ -226,7 +225,7 @@ export const createJob = async (req: AuthRequest, res: Response) => {
 };
 
 // Update job (employer only)
-export const updateJob = async (req: AuthRequest, res: Response) => {
+export const updateJob = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
 
@@ -292,7 +291,7 @@ export const updateJob = async (req: AuthRequest, res: Response) => {
 };
 
 // Delete job (employer only)
-export const deleteJob = async (req: AuthRequest, res: Response) => {
+export const deleteJob = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
 

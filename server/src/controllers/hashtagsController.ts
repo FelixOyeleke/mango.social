@@ -1,10 +1,9 @@
-import { Response } from 'express';
-import { AuthRequest } from '../middleware/auth.js';
+import { Request, Response } from 'express';
 import { query } from '../db/connection.js';
 import { getTrendingHashtags, searchHashtags } from '../utils/hashtagParser.js';
 
 // Get trending hashtags
-export const getTrending = async (req: AuthRequest, res: Response) => {
+export const getTrending = async (req: Request, res: Response) => {
   try {
     const limit = parseInt(req.query.limit as string) || 10;
     const hashtags = await getTrendingHashtags(limit);
@@ -19,7 +18,7 @@ export const getTrending = async (req: AuthRequest, res: Response) => {
 };
 
 // Search hashtags
-export const search = async (req: AuthRequest, res: Response) => {
+export const search = async (req: Request, res: Response) => {
   try {
     const { q } = req.query;
     const limit = parseInt(req.query.limit as string) || 10;
@@ -43,7 +42,7 @@ export const search = async (req: AuthRequest, res: Response) => {
 };
 
 // Get stories by hashtag
-export const getStoriesByHashtag = async (req: AuthRequest, res: Response) => {
+export const getStoriesByHashtag = async (req: Request, res: Response) => {
   try {
     const { name } = req.params;
     const limit = parseInt(req.query.limit as string) || 20;
@@ -82,7 +81,7 @@ export const getStoriesByHashtag = async (req: AuthRequest, res: Response) => {
 };
 
 // Get hashtag details
-export const getHashtagDetails = async (req: AuthRequest, res: Response) => {
+export const getHashtagDetails = async (req: Request, res: Response) => {
   try {
     const { name } = req.params;
     

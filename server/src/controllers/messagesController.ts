@@ -1,10 +1,9 @@
-import { Response } from 'express';
+import { Request, Response } from 'express';
 import { query } from '../db/connection.js';
-import { AuthRequest } from '../middleware/auth.js';
 import { createError } from '../middleware/errorHandler.js';
 
 // Get user's conversations
-export const getConversations = async (req: AuthRequest, res: Response) => {
+export const getConversations = async (req: Request, res: Response) => {
   try {
     const result = await query(`
       SELECT 
@@ -66,7 +65,7 @@ export const getConversations = async (req: AuthRequest, res: Response) => {
 };
 
 // Get or create conversation with a user
-export const getOrCreateConversation = async (req: AuthRequest, res: Response): Promise<Response> => {
+export const getOrCreateConversation = async (req: Request, res: Response): Promise<Response> => {
   try {
     const { user_id } = req.body;
 
@@ -126,7 +125,7 @@ export const getOrCreateConversation = async (req: AuthRequest, res: Response): 
 };
 
 // Get messages in a conversation
-export const getMessages = async (req: AuthRequest, res: Response) => {
+export const getMessages = async (req: Request, res: Response) => {
   try {
     const { conversation_id } = req.params;
     const limit = parseInt(req.query.limit as string) || 50;
@@ -171,7 +170,7 @@ export const getMessages = async (req: AuthRequest, res: Response) => {
 };
 
 // Send a message
-export const sendMessage = async (req: AuthRequest, res: Response) => {
+export const sendMessage = async (req: Request, res: Response) => {
   try {
     const { conversation_id, content, message_type = 'text', attachment_url } = req.body;
 
@@ -211,7 +210,7 @@ export const sendMessage = async (req: AuthRequest, res: Response) => {
 };
 
 // Delete a message
-export const deleteMessage = async (req: AuthRequest, res: Response) => {
+export const deleteMessage = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
 
@@ -242,7 +241,7 @@ export const deleteMessage = async (req: AuthRequest, res: Response) => {
 };
 
 // Mark conversation as read
-export const markAsRead = async (req: AuthRequest, res: Response) => {
+export const markAsRead = async (req: Request, res: Response) => {
   try {
     const { conversation_id } = req.params;
 
@@ -262,7 +261,7 @@ export const markAsRead = async (req: AuthRequest, res: Response) => {
 };
 
 // Get unread count
-export const getUnreadCount = async (req: AuthRequest, res: Response) => {
+export const getUnreadCount = async (req: Request, res: Response) => {
   try {
     const result = await query(`
       SELECT COUNT(DISTINCT m.conversation_id)::int as unread_conversations

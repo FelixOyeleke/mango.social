@@ -1,7 +1,7 @@
-import express from 'express';
+import express, { Request } from 'express';
 import multer from 'multer';
 import { query } from '../db/connection.js';
-import { authenticate, AuthRequest } from '../middleware/auth.js';
+import { authenticate } from '../middleware/auth.js';
 
 const router = express.Router();
 
@@ -125,7 +125,7 @@ router.get('/:id', async (req, res, next) => {
 });
 
 // Update user profile
-router.put('/', authenticate, async (req: AuthRequest, res, next) => {
+router.put('/', authenticate, async (req: Request, res, next) => {
   try {
     console.log('Update profile request from user:', req.user!.id);
     console.log('Request body:', req.body);
@@ -255,7 +255,7 @@ router.put('/', authenticate, async (req: AuthRequest, res, next) => {
 });
 
 // Upload avatar
-router.post('/avatar', authenticate, upload.single('avatar'), async (req: AuthRequest, res, next) => {
+router.post('/avatar', authenticate, upload.single('avatar'), async (req: Request, res, next) => {
   try {
     if (!req.file) {
       return res.status(400).json({ success: false, error: 'No file uploaded' });
@@ -283,7 +283,7 @@ router.post('/avatar', authenticate, upload.single('avatar'), async (req: AuthRe
 });
 
 // Upload banner
-router.post('/banner', authenticate, upload.single('banner'), async (req: AuthRequest, res, next) => {
+router.post('/banner', authenticate, upload.single('banner'), async (req: Request, res, next) => {
   try {
     if (!req.file) {
       return res.status(400).json({ success: false, error: 'No file uploaded' });
@@ -333,7 +333,7 @@ router.get('/:id/stories', async (req, res, next) => {
 });
 
 // Get user's liked stories
-router.get('/me/likes', authenticate, async (req: AuthRequest, res, next) => {
+router.get('/me/likes', authenticate, async (req: Request, res, next) => {
   try {
     const result = await query(
       `SELECT s.*, u.full_name as author_name, u.avatar_url as author_avatar,

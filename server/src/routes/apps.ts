@@ -1,6 +1,6 @@
-import express from 'express';
+import express, { Request } from 'express';
 import { query } from '../db/connection.js';
-import { authenticate, AuthRequest } from '../middleware/auth.js';
+import { authenticate } from '../middleware/auth.js';
 
 const router = express.Router();
 
@@ -24,7 +24,7 @@ router.get('/', async (req, res, next) => {
 });
 
 // Get user's app preferences
-router.get('/preferences', authenticate, async (req: AuthRequest, res, next) => {
+router.get('/preferences', authenticate, async (req: Request, res, next) => {
   try {
     const userId = req.user!.id;
 
@@ -55,7 +55,7 @@ router.get('/preferences', authenticate, async (req: AuthRequest, res, next) => 
 });
 
 // Update user's app preference (enable/disable a single app)
-router.put('/preferences/:appId', authenticate, async (req: AuthRequest, res, next) => {
+router.put('/preferences/:appId', authenticate, async (req: Request, res, next) => {
   try {
     const userId = req.user!.id;
     const { appId } = req.params;
@@ -108,7 +108,7 @@ router.put('/preferences/:appId', authenticate, async (req: AuthRequest, res, ne
 });
 
 // Bulk update user's app preferences
-router.put('/preferences', authenticate, async (req: AuthRequest, res, next) => {
+router.put('/preferences', authenticate, async (req: Request, res, next) => {
   try {
     const userId = req.user!.id;
     const { preferences } = req.body;
@@ -127,7 +127,10 @@ router.put('/preferences', authenticate, async (req: AuthRequest, res, next) => 
       [appIds]
     );
 
-    const appsMap = new Map(appsCheck.rows.map(app => [app.id, app]));
+    type AppCheckRow = { id: string; is_core: boolean };
+    const appsMap = new Map(
+      (appsCheck.rows as AppCheckRow[]).map(app => [app.id, app])
+    );
 
     for (const pref of preferences) {
       const app = appsMap.get(pref.app_id);
@@ -191,4 +194,3 @@ router.put('/preferences', authenticate, async (req: AuthRequest, res, next) => 
 });
 
 export default router;
-

@@ -1,10 +1,9 @@
-import { Response } from 'express';
+import { Request, Response } from 'express';
 import { query } from '../db/connection.js';
-import { AuthRequest } from '../middleware/auth.js';
 import { createError } from '../middleware/errorHandler.js';
 
 // Get all communities
-export const getCommunities = async (req: AuthRequest, res: Response) => {
+export const getCommunities = async (req: Request, res: Response) => {
   try {
     const result = await query(`
       SELECT 
@@ -30,7 +29,7 @@ export const getCommunities = async (req: AuthRequest, res: Response) => {
 };
 
 // Get single community
-export const getCommunity = async (req: AuthRequest, res: Response) => {
+export const getCommunity = async (req: Request, res: Response) => {
   try {
     const { slug } = req.params;
 
@@ -68,7 +67,7 @@ export const getCommunity = async (req: AuthRequest, res: Response) => {
 };
 
 // Create community
-export const createCommunity = async (req: AuthRequest, res: Response) => {
+export const createCommunity = async (req: Request, res: Response) => {
   try {
     const { name, description, is_private, rules } = req.body;
 
@@ -108,7 +107,7 @@ export const createCommunity = async (req: AuthRequest, res: Response) => {
 };
 
 // Join community
-export const joinCommunity = async (req: AuthRequest, res: Response) => {
+export const joinCommunity = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
 
@@ -150,7 +149,7 @@ export const joinCommunity = async (req: AuthRequest, res: Response) => {
 };
 
 // Leave community
-export const leaveCommunity = async (req: AuthRequest, res: Response) => {
+export const leaveCommunity = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
 

@@ -1,8 +1,7 @@
-import { Response, NextFunction } from 'express';
-import { AuthRequest } from './auth.js';
+import { Request, Response, NextFunction } from 'express';
 
 export const authorize = (...roles: string[]) => {
-  return (req: AuthRequest, res: Response, next: NextFunction) => {
+  return (req: Request, res: Response, next: NextFunction) => {
     if (!req.user) {
       return res.status(401).json({
         success: false,

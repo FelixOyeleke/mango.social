@@ -1,6 +1,5 @@
-import { Response } from 'express';
+import { Request, Response } from 'express';
 import { query } from '../db/connection.js';
-import { AuthRequest } from '../middleware/auth.js';
 import { createError } from '../middleware/errorHandler.js';
 import { createRepostNotification } from './notificationsController.js';
 
@@ -21,7 +20,7 @@ async function resolveStoryId(identifier: string): Promise<string> {
 }
 
 // Repost a story
-export const repostStory = async (req: AuthRequest, res: Response) => {
+export const repostStory = async (req: Request, res: Response) => {
   try {
     const { story_id: rawStoryId, comment } = req.body;
     const story_id = await resolveStoryId(rawStoryId);
@@ -94,7 +93,7 @@ export const repostStory = async (req: AuthRequest, res: Response) => {
 };
 
 // Undo repost
-export const undoRepost = async (req: AuthRequest, res: Response) => {
+export const undoRepost = async (req: Request, res: Response) => {
   try {
     const { story_id: rawStoryId } = req.params;
     const story_id = await resolveStoryId(rawStoryId);
@@ -129,7 +128,7 @@ export const undoRepost = async (req: AuthRequest, res: Response) => {
 };
 
 // Get users who reposted a story
-export const getReposters = async (req: AuthRequest, res: Response) => {
+export const getReposters = async (req: Request, res: Response) => {
   try {
     const { story_id: rawStoryId } = req.params;
     const story_id = await resolveStoryId(rawStoryId);
@@ -158,7 +157,7 @@ export const getReposters = async (req: AuthRequest, res: Response) => {
 };
 
 // Check if user has reposted a story
-export const checkRepost = async (req: AuthRequest, res: Response) => {
+export const checkRepost = async (req: Request, res: Response) => {
   try {
     const { story_id: rawStoryId } = req.params;
     const story_id = await resolveStoryId(rawStoryId);

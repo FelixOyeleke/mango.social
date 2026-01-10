@@ -1,8 +1,8 @@
-import express, { Response, NextFunction } from 'express';
+import express, { Request, Response, NextFunction } from 'express';
 import multer from 'multer';
 import { body, query as queryValidator, validationResult } from 'express-validator';
 import { query } from '../db/connection.js';
-import { authenticate, AuthRequest } from '../middleware/auth.js';
+import { authenticate } from '../middleware/auth.js';
 import { createError } from '../middleware/errorHandler.js';
 import { createLikeNotification } from '../controllers/notificationsController.js';
 import { processHashtags } from '../utils/hashtagParser.js';
@@ -27,7 +27,7 @@ const upload = multer({
 });
 
 // Get all stories (public)
-router.get('/', async (req: AuthRequest, res: Response, next: NextFunction) => {
+router.get('/', async (req: Request, res: Response, next: NextFunction) => {
   try {
     const page = parseInt(req.query.page as string) || 1;
     const limit = parseInt(req.query.limit as string) || 10;
@@ -136,7 +136,7 @@ router.get('/', async (req: AuthRequest, res: Response, next: NextFunction) => {
 });
 
 // Get single story by slug
-router.get('/:slug', async (req: AuthRequest, res, next) => {
+router.get('/:slug', async (req: Request, res, next) => {
   try {
     const { slug } = req.params;
     const userId = req.user?.id || null;
@@ -193,7 +193,7 @@ router.post(
     body('content').trim().notEmpty(),
     body('category').optional().trim(),
   ],
-  async (req: AuthRequest, res, next) => {
+  async (req: Request, res, next) => {
     try {
       const errors = validationResult(req);
       if (!errors.isEmpty()) {
@@ -226,7 +226,7 @@ router.post(
 );
 
 // Upload story featured image
-router.post('/:id/image', authenticate, upload.single('image'), async (req: AuthRequest, res, next) => {
+router.post('/:id/image', authenticate, upload.single('image'), async (req: Request, res, next) => {
   try {
     if (!req.file) {
       return res.status(400).json({ success: false, error: 'No file uploaded' });
@@ -269,7 +269,7 @@ router.post('/:id/image', authenticate, upload.single('image'), async (req: Auth
 });
 
 // Like a story
-router.post('/:id/like', authenticate, async (req: AuthRequest, res, next) => {
+router.post('/:id/like', authenticate, async (req: Request, res, next) => {
   try {
     const { id } = req.params;
 
@@ -297,7 +297,7 @@ router.post('/:id/like', authenticate, async (req: AuthRequest, res, next) => {
 });
 
 // Unlike a story
-router.delete('/:id/like', authenticate, async (req: AuthRequest, res, next) => {
+router.delete('/:id/like', authenticate, async (req: Request, res, next) => {
   try {
     const { id } = req.params;
 
@@ -313,7 +313,7 @@ router.delete('/:id/like', authenticate, async (req: AuthRequest, res, next) => 
 });
 
 // Check if user has liked a story
-router.get('/:id/like/check', authenticate, async (req: AuthRequest, res, next) => {
+router.get('/:id/like/check', authenticate, async (req: Request, res, next) => {
   try {
     const { id } = req.params;
 
@@ -332,7 +332,7 @@ router.get('/:id/like/check', authenticate, async (req: AuthRequest, res, next) 
 });
 
 // Delete a story (owner only)
-router.delete('/:id', authenticate, async (req: AuthRequest, res, next) => {
+router.delete('/:id', authenticate, async (req: Request, res, next) => {
   try {
     const { id } = req.params;
 

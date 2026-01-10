@@ -1,6 +1,5 @@
-import { Response } from 'express';
+import { Request, Response } from 'express';
 import { query } from '../db/connection.js';
-import { AuthRequest } from '../middleware/auth.js';
 import { createError } from '../middleware/errorHandler.js';
 
 const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
@@ -42,7 +41,7 @@ async function resolveUserId(identifier: string): Promise<string> {
 }
 
 // Follow a user
-export const followUser = async (req: AuthRequest, res: Response) => {
+export const followUser = async (req: Request, res: Response) => {
   try {
     const { userId: rawUserId } = req.params;
     const followerId = req.user!.id;
@@ -95,7 +94,7 @@ export const followUser = async (req: AuthRequest, res: Response) => {
 };
 
 // Unfollow a user
-export const unfollowUser = async (req: AuthRequest, res: Response) => {
+export const unfollowUser = async (req: Request, res: Response) => {
   try {
     const { userId: rawUserId } = req.params;
     const followerId = req.user!.id;
@@ -130,7 +129,7 @@ export const unfollowUser = async (req: AuthRequest, res: Response) => {
 };
 
 // Check if following a user
-export const checkFollowing = async (req: AuthRequest, res: Response) => {
+export const checkFollowing = async (req: Request, res: Response) => {
   try {
     const { userId: rawUserId } = req.params;
     const followerId = req.user!.id;
@@ -151,7 +150,7 @@ export const checkFollowing = async (req: AuthRequest, res: Response) => {
 };
 
 // Check mutual follow (both users follow each other)
-export const checkMutualFollow = async (req: AuthRequest, res: Response) => {
+export const checkMutualFollow = async (req: Request, res: Response) => {
   try {
     const { userId: rawUserId } = req.params;
     const currentUserId = req.user!.id;
@@ -182,7 +181,7 @@ export const checkMutualFollow = async (req: AuthRequest, res: Response) => {
 };
 
 // Get user's followers
-export const getFollowers = async (req: AuthRequest, res: Response) => {
+export const getFollowers = async (req: Request, res: Response) => {
   try {
     const { userId: rawUserId } = req.params;
     const userId = await resolveUserId(rawUserId);
@@ -223,7 +222,7 @@ export const getFollowers = async (req: AuthRequest, res: Response) => {
 };
 
 // Get users that a user is following
-export const getFollowing = async (req: AuthRequest, res: Response) => {
+export const getFollowing = async (req: Request, res: Response) => {
   try {
     const { userId: rawUserId } = req.params;
     const userId = await resolveUserId(rawUserId);
