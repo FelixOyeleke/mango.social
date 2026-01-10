@@ -26,6 +26,7 @@ import Search from './pages/Search';
 import Trending from './pages/Trending';
 import AppStore from './pages/AppStore';
 import Waitlist from './pages/Waitlist';
+import Debug from './pages/Debug';
 import NotFound from './pages/NotFound';
 import ProtectedRoute from './components/ProtectedRoute';
 import AdminLayout from './components/AdminLayout';
@@ -69,6 +70,7 @@ function App() {
         <Route path="register" element={<Register />} />
         <Route path="resources" element={<Resources />} />
         <Route path="waitlist" element={<Waitlist />} />
+        <Route path="debug" element={<Debug />} />
 
         {/* Protected Routes */}
         <Route element={<ProtectedRoute />}>
